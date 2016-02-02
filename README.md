@@ -1,1 +1,3 @@
-# algo_training
+# leetcode training
+
+LeetCode Problem Solving
