@@ -4,9 +4,9 @@ This is my solutions on Leetcode web site problemset.
 
 https://leetcode.com/problemset/algorithms/
 
-<b>Easy</b> directory contains easy problems
-<b>Medium</b> contains problems qualified medium
-<b>Hard</b> contains hard problems
+<b>Easy</b> directory contains easy problems<br/>
+<b>Medium</b> contains problems qualified medium<br/>
+<b>Hard</b> contains hard problems<br/>
 
 Training everyday to be a good programmer.
 
