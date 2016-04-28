@@ -6,7 +6,7 @@ https://leetcode.com/problemset/algorithms/
 
 <b>Easy</b> directory contains easy problems
 <b>Medium</b> contains problems qualified medium
-and <br>Hard</b> contains hard problems
+<b>Hard</b> contains hard problems
 
 Training everyday to be a good programmer.
 
