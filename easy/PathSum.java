@@ -12,7 +12,42 @@ Given the below binary tree and sum = 22,
         7    2      1
 return true, as there exist a root-to-leaf path 5->4->11->2 which sum is 22.
 */
+public boolean hasPathSum(TreeNode root, int sum) {
+  if (root == null) {
+    return false;
+  }
+        
+  LinkedList<TreeNode> queue = new LinkedList<>();
+  LinkedList<Integer> values = new LinkedList<>();
+  
+  queue.add(root);
+  values.add(root.val);
+  
+  while (!queue.isEmpty()) {
+      TreeNode node = queue.poll();
+      int currentSum = values.poll();
+      
+      if (node.left == null && node.right == null && currentSum == sum) {
+          return true;
+      }
+      
+      if (node.left != null) {
+          queue.add(node.left);
+          values.add(currentSum + node.left.val);
+      }
+      
+      if (node.right != null) {
+          queue.add(node.right);
+          values.add(currentSum + node.right.val);
+      }
+  }
+  
+  return false;
+}
 
+/**
+ * solution 2
+ */
 public boolean hasPathSum(TreeNode root, int sum) {
   if (root == null) {
       return false;
