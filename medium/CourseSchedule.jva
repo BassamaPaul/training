@@ -1,0 +1,56 @@
+/**
+There are a total of n courses you have to take, labeled from 0 to n - 1.
+
+Some courses may have prerequisites, for example to take course 0 you have to first take course 1, which is expressed as a pair: [0,1]
+
+Given the total number of courses and a list of prerequisite pairs, is it possible for you to finish all courses?
+
+For example:
+
+2, [[1,0]]
+There are a total of 2 courses to take. To take course 1 you should have finished course 0. So it is possible.
+
+2, [[1,0],[0,1]]
+There are a total of 2 courses to take. To take course 1 you should have finished course 0, and to take course 0 you should also have finished course 1. So it is impossible.
+*/
+
+public boolean canFinish(int numCourses, int[][] prerequisites) {
+    int size = prerequisites.length;
+
+    boolean[] marked = new boolean[numCourses];
+    boolean[] done = new boolean[numCourses];
+    List<Integer>[] adj = toAdjacencyList(numCourses, prerequisites);
+
+    for (int v = 0; v < numCourses; v++) {
+        if (!marked[v] && search(adj, v, marked, done))
+            return false;
+    }
+
+    return true;
+}
+
+private boolean search(List<Integer>[] adj, int s, boolean[] marked, boolean[] done) {
+    marked[s] = true;
+    done[s] = true;
+    if (adj[s] == null) {
+        adj[s] = new ArrayList();
+    }
+    for (int w : adj[s]) {
+        if ((!marked[w] && search(adj, w, marked, done)) || done[w])
+            return true;
+    }
+    done[s] = false;
+    return false;
+}
+
+private List<Integer>[] toAdjacencyList(int numCourses, int[][] p) {
+    int size = p.length;
+    List<Integer>[] adj = (ArrayList<Integer>[]) new ArrayList[numCourses];
+    for (int i = 0; i < size; i++) {
+        if (adj[p[i][0]] == null) {
+            adj[p[i][0]] = new ArrayList<>();
+        }
+        adj[p[i][0]].add(p[i][1]);
+    }
+    return adj;
+}
