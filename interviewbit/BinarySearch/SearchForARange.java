@@ -29,7 +29,7 @@ public class Solution {
     public int searchBegin(List<Integer> a, int start, int end, int target, boolean isBegin) {
         if (start > end) return -1;
         int mid = start + (end - start) / 2;
-        if (a.get(mid) == target)
+        if (a.get(mid) == target) {
             if (isBegin) {
                 if (mid == 0 || a.get(mid - 1) != target) return mid;
                 return searchBegin(a, start, mid - 1, target, isBegin);
@@ -38,7 +38,7 @@ public class Solution {
                 if (mid >= N - 1 || a.get(mid + 1) != target) return mid;
                 return searchBegin(a, mid + 1, end, target, isBegin);
             }
-        else if (a.get(mid) < target)
+        } else if (a.get(mid) < target)
             return searchBegin(a, mid + 1, end, target, isBegin);
         else
             return searchBegin(a, start, mid - 1, target, isBegin);
