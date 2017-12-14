@@ -30,3 +30,27 @@ public boolean isValid(String s) {
   }
   return parenthesis.isEmpty();
 }
+
+/* new solution at 14 december 2017 */
+public boolean isValid(String s) {
+    if (s == null || s.isEmpty()) {
+        return true;
+    }
+    int n = s.length();
+    Stack<Character> stack = new Stack<>();
+    Character c;
+    for (int i = 0; i < n; i++) {
+        if (s.charAt(i) == '(' || s.charAt(i) == '{' || s.charAt(i) == '[') {
+            stack.push(s.charAt(i));
+            if (stack.size() > n - i - 1) {
+                return false;
+            }
+        } else if (stack.isEmpty() || ((c = stack.pop()) != null && 
+                (c == '(' && s.charAt(i) != ')' || 
+                c == '{' && s.charAt(i) != '}' || 
+                c == '[' && s.charAt(i) != ']'))) {
+            return false;
+        }
+    }
+    return stack.isEmpty();
+}
