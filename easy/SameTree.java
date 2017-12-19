@@ -17,3 +17,37 @@ public boolean isSameTree(TreeNode p, TreeNode q) {
       return false;
   }
 }
+
+// other solution 19/12/2017
+
+public boolean isSameTree(TreeNode p, TreeNode q) {
+    if (p == q) {
+        return true;
+    }
+
+    if (p == null || q == null) {
+        return false;
+    }
+
+    Stack<TreeNode> pStack = new Stack<>();
+    Stack<TreeNode> qStack = new Stack<>();
+    pStack.push(p);
+    qStack.push(q);
+
+    while (!pStack.isEmpty() && !qStack.isEmpty()) {
+        TreeNode pNode = pStack.pop();
+        TreeNode qNode = qStack.pop();
+        if (pNode == null && qNode == null) {
+            continue;
+        } else if ((pNode == null || qNode == null) || (pNode.val != qNode.val)) {
+            return false;
+        }
+        pStack.push(pNode.right);
+        pStack.push(pNode.left);
+
+        qStack.push(qNode.right);
+        qStack.push(qNode.left);
+    }
+
+    return pStack.isEmpty() && qStack.isEmpty();
+}
