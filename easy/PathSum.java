@@ -107,3 +107,25 @@ private LinkedList duplicate(LinkedList<TreeNode> onePath) {
   }
   return newPath;
 }
+
+/** other solution 19/12/2017*/
+public boolean hasPathSum(TreeNode root, int sum) {
+    if (root == null) {
+        return false;
+    }
+    return hasPathSum(root, 0, sum);
+}
+
+private boolean hasPathSum(TreeNode root, int currentSum, int sum) {
+    if (root == null) {
+        return currentSum == sum;
+    }
+    if (root.left != null && root.right == null) {
+        return hasPathSum(root.left, currentSum + root.val, sum);
+    } else if (root.left == null && root.right != null) {
+        return hasPathSum(root.right, currentSum + root.val, sum);
+    } else {
+        return hasPathSum(root.left, currentSum + root.val, sum) || 
+        hasPathSum(root.right, currentSum + root.val, sum);    
+    }
+}
