@@ -55,3 +55,44 @@ public List<List<Integer>> levelOrderBottom(TreeNode root) {
   
   return reversedResult;
 }
+
+// other solution 19/12/2017
+public List<List<Integer>> levelOrderBottom(TreeNode root) {
+    List<List<Integer>> result = new ArrayList<>();
+    if (root == null) {
+        return result;
+    }
+
+    List<Integer> line = new ArrayList<>();
+
+    LinkedList<TreeNode> current = new LinkedList<>();
+    LinkedList<TreeNode> next = new LinkedList<>();
+
+    Stack<List<Integer>> stack = new Stack<>();
+
+    current.add(root);
+    while (!current.isEmpty()) {
+        TreeNode node = current.pop();
+        line.add(node.val);
+
+        if (node.left != null) {
+            next.add(node.left);
+        }
+        if (node.right != null) {
+            next.add(node.right);
+        }
+
+        if (current.isEmpty()) {
+            stack.push(line);
+            line = new ArrayList<>();
+            current = next;
+            next = new LinkedList<>();
+        }
+    }
+
+    while (!stack.isEmpty()) {
+        result.add(stack.pop());
+    }
+
+    return result;
+}
