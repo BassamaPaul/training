@@ -75,3 +75,34 @@ public int minDepth(TreeNode root) {
         return 1 + minDepth(root.right);
     }
 }
+
+// 
+public int minDepth(TreeNode root) {
+    if (root == null) {
+        return 0;
+    }
+
+    LinkedList<TreeNode> queue = new LinkedList<>();
+    LinkedList<TreeNode> next = new LinkedList<>();
+    queue.add(root);
+    int count = 1;
+
+    while (!queue.isEmpty()) {
+        TreeNode node = queue.pop();
+        if (node.left == null && node.right == null) {
+            return count;
+        }
+        if (node.left != null) {
+            next.add(node.left);
+        }
+        if (node.right != null) {
+            next.add(node.right);
+        }
+        if (queue.isEmpty()) {
+            queue = next;
+            count++;
+            next = new LinkedList<>();
+        }
+    }
+    return count;
+}
