@@ -17,12 +17,10 @@ public int missingNumber(int[] nums) {
     if (nums == null || nums.length == 0) {
         return 0;
     }
-    int sum = 0;
     int n = nums.length;
+    int number = ((n + 1)*n)/2;
     for (int i = 0; i < n; i++) {
-        sum += nums[i];
+        number -= nums[i];
     }
-
-    int realSum = ((n + 1)*n)/2;
-    return realSum - sum;
+    return number;
 }
