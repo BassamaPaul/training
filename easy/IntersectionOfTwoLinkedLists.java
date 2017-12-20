@@ -62,3 +62,27 @@ public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
     
     return null;
 }
+
+
+//new solution 20/12/2019
+public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+    if (headA == null || headB == null) {
+        return null;
+    }
+    ListNode current = headA;
+    Set<ListNode> set = new HashSet<>();
+    while (current != null) {
+        set.add(current);
+        current = current.next;
+    }
+
+    current = headB;
+    while (current != null) {
+        if (set.contains(current)) {
+            return current;
+        }
+        current = current.next;
+    }
+
+    return null;
+}
