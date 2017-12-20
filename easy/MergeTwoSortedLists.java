@@ -39,3 +39,39 @@ public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
     
     return newHead;
 }
+
+//
+public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+    if (l1 == null) return l2;
+    if (l2 == null) return l1;
+
+    ListNode prev = null;
+    ListNode c1 = l1;
+    ListNode c2 = l2;
+
+    while (c1 != null && c2 != null) {
+        if (c1.val > c2.val) {
+            ListNode node = new ListNode(c2.val);
+            if (prev == null) {
+                node.next = l1;
+                l1 = node;
+                c1 = l1;
+            } else {
+                node.next = prev.next;
+                prev.next = node;
+                prev = prev.next;
+            }
+            c2 = c2.next;
+        } else {
+            prev = c1;
+            c1 = c1.next;
+        }
+    }
+
+    while (c2 != null) {
+        prev.next = new ListNode(c2.val);
+        prev = prev.next;
+        c2 = c2.next;
+    }
+    return l1;
+}
