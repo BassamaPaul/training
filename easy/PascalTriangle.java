@@ -39,3 +39,29 @@ public List<List<Integer>> generate(int numRows) {
     }
     return list;
 }
+
+// Generate
+public List<List<Integer>> generate(int numRows) {
+    if (numRows == 0) {
+        return Collections.emptyList();
+    }
+
+    List<List<Integer>> result = new ArrayList<>();
+    List<Integer> previous = new ArrayList<>();
+    previous.add(1);
+    result.add(previous);
+
+    for (int i = 1; i < numRows; i++) {
+        List<Integer> last = new ArrayList<>();
+        int m = previous.size();
+        last.add(1);
+        for (int j = 1; j < m; j++) {
+            last.add(previous.get(j - 1) + previous.get(j));
+        }
+        last.add(1);
+        result.add(last);
+        previous = last;
+    }
+
+    return result;
+}
