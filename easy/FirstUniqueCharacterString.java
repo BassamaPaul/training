@@ -11,7 +11,27 @@ return 2.
 Note: You may assume the string contain only lowercase letters.
 */
 
+public int firstUniqChar(String s) {
+    if (s == null || s.length() == 0) {
+        return -1;
+    }
 
+    int n = s.length();
+    int[] count = new int[256];
+    Arrays.fill(count, 0);
+
+    for (int i = 0; i < n; i++) {
+        count[s.charAt(i)]++; 
+    }
+
+    for (int i = 0; i < n; i++) {
+        if (count[s.charAt(i)] == 1) {
+            return i;
+        }
+    }
+
+    return -1;
+}
 
 public int firstUniqChar(String s) {
     if (s == null || s.length() == 0) {
