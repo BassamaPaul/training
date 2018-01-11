@@ -47,3 +47,35 @@ public void sumOfLeftLeaves(TreeNode root, boolean isLeft, List<Integer> leftNod
         sumOfLeftLeaves(root.right, false, leftNodes);
     }
 }
+
+
+//
+public int sumOfLeftLeaves(TreeNode root) {
+    if (root == null || (root.left == null && root.right == null)) {
+        return 0;
+    }
+
+    Stack<Integer> leftNodes = new Stack<>();
+    leftNodes.push(0);
+    sumOfLeftLeaves(root, false, leftNodes);
+
+    return leftNodes.pop();
+}
+
+public void sumOfLeftLeaves(TreeNode root, boolean isLeft, Stack<Integer> leftNodes) {
+    if (root == null) {
+        return;
+    }
+    if (root.left == null && root.right == null) {
+        if (isLeft) {
+            leftNodes.push(leftNodes.pop() + root.val);
+        }
+        return;
+    }
+    if (root.left != null) {
+        sumOfLeftLeaves(root.left, true, leftNodes);
+    }
+    if (root.right != null) {
+        sumOfLeftLeaves(root.right, false, leftNodes);
+    }
+}
