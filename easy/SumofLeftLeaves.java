@@ -79,3 +79,34 @@ public void sumOfLeftLeaves(TreeNode root, boolean isLeft, Stack<Integer> leftNo
         sumOfLeftLeaves(root.right, false, leftNodes);
     }
 }
+
+//
+public int sumOfLeftLeaves(TreeNode root) {
+    if (root == null || (root.left == null && root.right == null)) {
+        return 0;
+    }
+
+    int[] sum = new int[1];
+    sum[0] = 0;
+    sumOfLeftLeaves(root, false, sum);
+
+    return sum[0];
+}
+
+public void sumOfLeftLeaves(TreeNode root, boolean isLeft, int[] sum) {
+    if (root == null) {
+        return;
+    }
+    if (root.left == null && root.right == null) {
+        if (isLeft) {
+            sum[0] += root.val;
+        }
+        return;
+    }
+    if (root.left != null) {
+        sumOfLeftLeaves(root.left, true, sum);
+    }
+    if (root.right != null) {
+        sumOfLeftLeaves(root.right, false, sum);
+    }
+}
