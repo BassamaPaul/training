@@ -42,3 +42,25 @@ public int dominantIndex(int[] nums) {
 
     return ind;
 }
+
+public int dominantIndex(int[] nums) {
+    if (nums == null || nums.length == 0) {
+        return -1;
+    }
+
+    int n = nums.length;
+    int max1 = nums[0];
+    int max2 = Integer.MIN_VALUE;
+    int ind = 0;
+    for (int i = 1; i < n; i++) {
+        if (nums[i] > max1) {
+            max2 = max1;
+            max1 = nums[i];
+            ind = i;
+        } else if (nums[i] > max2) {
+            max2 = nums[i];
+        }
+    }
+
+    return max2*2 > max1? -1 : ind;
+}
