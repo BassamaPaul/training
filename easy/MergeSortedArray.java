@@ -24,3 +24,24 @@ public void merge(int[] nums1, int m, int[] nums2, int n) {
         for (i = 0; i <= j; i++) nums1[i] = nums2[i];
     }
 }
+
+//solution 30/01/2018
+public void merge(int[] nums1, int m, int[] nums2, int n) {
+    if (m == 0 && n == 0) {
+        return;
+    }
+
+    int i = 0;
+    int s1 = nums1.length;
+    while (m < s1) {
+        int k = m;
+        nums1[k] = nums2[i++];
+        while (k > 0 && nums1[k] < nums1[k - 1]) {
+            int temp = nums[k];
+            nums[k] = nums[k-1];
+            nums[k-1] = temp;
+            k--;
+        }
+        m++;
+    }
+}
