@@ -29,7 +29,7 @@ public int dominantIndex(int[] nums) {
     int ind = 0;
     for (int i = 1; i < n; i++) {
         if (nums[i] > max) {
-            max = Math.max(max, nums[i]);
+            max = nums[i];
             ind = i;
         }
     }
