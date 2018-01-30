@@ -26,3 +26,34 @@ public int[] plusOne(int[] digits) {
     digits2[0] = left;
     return digits2;
 }
+
+//
+public int[] plusOne(int[] digits) {
+    if (digits == null || digits.length == 0) {
+        return digits;
+    }
+
+    int n = digits.length;
+    int flag = 1;
+
+    for (int i = n - 1; i >= 0; i--) {
+        digits[i] = digits[i] + flag;
+        flag = 0;
+        if (digits[i] == 10) {
+            flag = 1;
+        }
+        digits[i] = digits[i] % 10;
+    }
+
+    if (flag == 1) {
+        int m = n + 1;
+        int[] temp = new int[m];
+        temp[0] = 1;
+        for (int i = 1; i < m; i++) {
+            temp[i] = digits[i - 1];
+        }
+        digits = temp;
+    }
+
+    return digits;
+}
